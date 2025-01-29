@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucapan Ulang Tahun</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+        }
+        h1 {
+            color: #d81b60;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .photo {
+            width: 100px;
+            height: 100px;
+            position: fixed;
+            transition: transform 3s ease-in-out, opacity 3s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selamat HBD SAYAANGG!</h1>
+    <p>Semoga kamu jadi manusia paling beruntung di dunia ini.</p>
+    <button class="button" onclick="togglePhotos()">Pencet Ini!</button>
+    <script>
+        let interval;
+        function createPhoto() {
+            let photos = ["images/image1.jpg", "images/image2.jpg", "images/image3.jpg", "images/image4.jpg", "images/image5.jpg", "images/love.png", "images/love.png", "images/love.png"];
+            let img = document.createElement("img");  // Deklarasikan elemen gambar
+            img.src = photos[Math.floor(Math.random() * photos.length)];
+            img.classList.add("photo");
+            document.body.appendChild(img);
+
+            let x = Math.random() * window.innerWidth;
+            let y = Math.random() * window.innerHeight;
+            img.style.left = x + "px";
+            img.style.top = y + "px";
+
+            setTimeout(() => {
+                img.style.transform = `translateY(-500px) rotate(${Math.random() * 360}deg)`;
+                img.style.opacity = "0";
+            }, 100);
+
+            setTimeout(() => {
+                img.remove();
+            }, 3000);
+        }
+
+        function togglePhotos() {
+            if (interval) {
+                clearInterval(interval);
+                interval = null;
+            } else {
+                interval = setInterval(createPhoto, 500);
+            }
+        }
+    </script>
+</body>
+</html>
